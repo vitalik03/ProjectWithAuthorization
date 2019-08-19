@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 
-export const UserSchema = new Schema({
+export const MessageSchema = new Schema({
     title: String,
     text: String
 });

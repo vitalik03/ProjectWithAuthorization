@@ -1,4 +1,4 @@
 export interface IMessage{
-    title: String;
-    text: String;
+    title: string;
+    text: string;
 }

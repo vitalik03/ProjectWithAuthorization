@@ -1,4 +1,4 @@
 export class CreateMessageDto{
-    readonly title: String;
-    readonly text: String;
+    readonly title: string;
+    readonly text: string;
 }
