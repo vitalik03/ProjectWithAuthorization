@@ -8,10 +8,11 @@ import { MessagesService } from './messages/messages.service';
 import { MessagesModule } from './messages/messages.module';
 import { UsersController } from './users/users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
 import config from '../src/config/keys';
 
 @Module({
-  imports: [MongooseModule.forRoot(config.mongoURL), UsersModule, MessagesModule],
+  imports: [MongooseModule.forRoot(config.mongoURL), UsersModule, MessagesModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
