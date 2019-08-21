@@ -23,4 +23,8 @@ export class UsersController {
       updateUser( @Body() user: CreateUserDto ): Promise<IUser> {
         return this.usersService.updateUser(user);
       }
+    @Get()
+      getAll(): Promise<IUser[]> {
+        return this.usersService.getAll();
+      }
 }

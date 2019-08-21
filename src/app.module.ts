@@ -9,11 +9,18 @@ import { MessagesModule } from './messages/messages.module';
 import { UsersController } from './users/users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
-import config from '../src/config/keys';
+import config from './config/keys';
+import { RolesGuard } from './common/guards/roles.guards';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [MongooseModule.forRoot(config.mongoURL), UsersModule, MessagesModule, AuthModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService
+    // {
+    // provide: APP_GUARD,
+    // useClass: RolesGuard
+    // }
+  ],
 })
 export class AppModule {}

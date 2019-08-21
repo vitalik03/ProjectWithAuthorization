@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 import { UsersService } from './users/users.service';
 import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from './common/guards/roles.guards';
 
 @Controller()
 export class AppController {
@@ -15,7 +16,7 @@ export class AppController {
     {
         throw new HttpException( 'User not found' , 404 );
     }
-    return this.authService.login( user );
+    return this.authService.login( user1 );
   }
   
   @Post( 'register' )
@@ -25,16 +26,16 @@ export class AppController {
     {
         throw new HttpException('User is already created', 400 );
     }
-    const {pass = ''} = user;
-    if ( pass.length < 5 || pass.length > 8){
-      throw new HttpException( 'Pass should have more than 5 and less than 8' , 400 );
+    const {password = ''} = user;
+    if ( password.length < 5 || password.length > 8){
+      throw new HttpException( 'Password should have more than 5 and less than 8' , 400 );
     }
     const user1 = await this.usersService.addUser(user);
     return user1;
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Get('me')
+  @UseGuards(AuthGuard('jwt'))
   getProfile(@Request() req){
     return req.user;
   }

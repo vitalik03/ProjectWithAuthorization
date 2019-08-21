@@ -26,9 +26,9 @@ export class UsersService {
         const params = {
             name
         }
-        const email = user.password;
+        const password = user.password;
         const aparams = {
-            email
+            password
         }
         const updated = await this.userModel.findOneAndUpdate(params,aparams,{new: true});
         return updated; 
@@ -40,5 +40,10 @@ export class UsersService {
         }
         const user = await this.userModel.findOne( params );
         return user;
+    }
+
+    async getAll(){
+        const items = await this.userModel.find();
+        return items;
     }
 }

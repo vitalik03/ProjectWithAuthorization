@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { IMessage } from './interface/message.interface';
 import { InjectModel } from '@nestjs/mongoose';
+import { IUser } from 'src/users/interfaces/user.interface';
 
 
 @Injectable()
@@ -32,5 +33,13 @@ export class MessagesService {
         }
         const updated = await this.messageModel.findOneAndUpdate(params,aparams,{new: true});
         return updated; 
+    }
+
+    async find(params): Promise<IMessage>{
+        return await this.messageModel.find(params).populate('user');
+    }
+
+    async findOne(params): Promise<IMessage>{
+        return await this.messageModel.findOne(params);
     }
 }
